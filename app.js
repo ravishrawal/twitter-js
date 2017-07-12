@@ -1,5 +1,24 @@
 const express = require( 'express' );
 const app = express();
+const nunjucks = require('nunjucks');
+app.set('view engine','html');
+app.engine('html',nunjucks.render);
+var locals = {
+  title: "An Example",
+  people: [
+    {name: 'Gandalf'},
+    {name: 'Frodo'},
+    {name:'Hermione'}
+  ]
+};
+
+nunjucks.configure('views',{noCache:true});
+nunjucks.render('index.html',locals,function(err,output){
+  console.log(output);
+});
+
+
+
 var port = 3000 || process.env.PORT
 app.listen(port,function(){
   console.log('server listening');
