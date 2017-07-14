@@ -3,10 +3,11 @@ const app = express();
 const nunjucks = require('nunjucks');
 const tweetBank = require('./tweetBank.js')
 const routes = require('./routes');
+const path=require('path');
 app.use('/',routes);
 app.set('view engine','html');
 app.engine('html',nunjucks.render);
-
+app.use(express.static('public'))
 app.use('/',function(req,res,next){
   next();
 })
@@ -28,10 +29,7 @@ var userCmd='list';
 tweetBank[userCmd]();
 const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
 
-app.get('/stylesheets/style.css',function(req,res,next){
-  res.sendFile('/stylesheets/style.css');
-  next();
-});
+
 
 // nunjucks.render('index.html',locals,function(err,output){
 //   console.log(output);

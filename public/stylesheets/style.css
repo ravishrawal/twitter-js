@@ -53,7 +53,11 @@ code {
 }
 .content {
   margin-left: 60px;
+  color:blue;
 }
 .content .by {
   font-weight: bold;
+}
+li{
+  list-style-type: none;
 }
