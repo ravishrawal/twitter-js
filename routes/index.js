@@ -22,6 +22,21 @@ router.get('/', function (req, res) {
 router.get('/style/stylesheets.css',function(req,res){
   res.sendFile('/style/stylesheets.css');
 });
+router.get('/users/:name', function(req, res) {
+  var name = req.params.name;
+  // console.log('Person:'+name);
+  // console.log(tweetBank.find( {name: name}));
+  var list = tweetBank.find( {name: name} );
+  console.log(list);
+  res.render( 'index',{tweets:list});
+});
+
+router.get('/tweets/:id',function(req,res){
+  var id = +req.params.id;
+  console.log(id);
+  var list = tweetBank.find( {id: id} );
+  console.log(list);
+});
 
 module.exports = router;
 
